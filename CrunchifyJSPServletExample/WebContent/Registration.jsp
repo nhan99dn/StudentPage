@@ -84,5 +84,6 @@
         <button type="submit">Register Student</button>
         </form>
     </div>
+<footer></footer>
 </body>
 </html>
