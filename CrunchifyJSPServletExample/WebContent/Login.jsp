@@ -18,7 +18,7 @@
 	}
 	.container{
 		width: 650px;
-		height: 400px;
+		height: 350px;
 		text-align:center;
 		background-color: rgb(51, 85, 51, 0.3);
 		margin:0 auto ;
@@ -34,9 +34,10 @@
 	}
 	input#button{
 		margin-top: -10px;
-		width: 150px;
+		width: 200px;
 		height: 30px;
 		border: none;
+		font-size: 13px;
 	}
 	input#button:hover{
 		background-color: rgb(230,190,190);
@@ -47,7 +48,7 @@
 		height: 150px;
 		border-radius: 50%;
 		margin-top:-75px;
-		margin-bottom: 50px;
+		margin-bottom: 20px;
 	}
 	
 </style>
@@ -55,14 +56,10 @@
 </head>
 <body>
 	<div class="container" >
+
 		<img src='https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?cs=srgb&dl=blur-book-girl-373465.jpg&fm=jpg'>
+		<h1>Login</h1>
         <form action="login" method ="post">
-        	<div class="form-input">
-            <input type="text" name="firstname" size="20px" placeholder="Enter First Name"><br>
-            </div>
-            <div class="form-input">
-            <input type="text" name="lastname" size= "20px" placeholder="Enter Last Name"><br>
-            </div>
             <div class="form-input">
             <input type="text" name="username" size="20px" placeholder="Enter User Name"><br>
             </div>
@@ -71,7 +68,7 @@
             </div>
             <br><br>
         	<input id="button" type="submit" value="Log in">
-        	<input id="button" type="submit" formaction= "Registration.jsp" value="Register">
+        	<input id="button" type="submit" formaction= "Registration.jsp" value="Dont't have account? Register!">
         	</div>
         </form>
     </div>

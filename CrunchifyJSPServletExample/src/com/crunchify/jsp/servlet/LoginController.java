@@ -18,8 +18,10 @@ import com.crunchify.jsp.servlet.dao.StudentDao;
  */
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
+	
 		HttpSession session;
 		StudentDao st = new StudentDao();
+		
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		PrintWriter out = response.getWriter();

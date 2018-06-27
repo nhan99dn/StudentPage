@@ -36,6 +36,7 @@
 	<button type="submit" formaction="ViewProfile.jsp">View Profile</button>
 	<button type="submit" formaction="table.jsp">View table</button>
 	<button type="submit" formaction="Delete.jsp">Delete Student</button>
+	<button type="submit" formaction="Login.jsp">Log out</button>
 	</form>
 </h1>
 </body>

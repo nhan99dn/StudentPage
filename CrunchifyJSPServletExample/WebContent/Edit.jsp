@@ -55,7 +55,7 @@
 		height: 150px;
 		border-radius: 50%;
 		margin-top:-75px;
-		margin-bottom: 50px;
+		margin-bottom: 20px;
 	}
 
 </style>
@@ -63,6 +63,7 @@
 <body>
 	<div class="container">
 	<img id="book" src='https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?cs=srgb&dl=blur-book-girl-373465.jpg&fm=jpg'>
+	<h1>Edit Student</h1>
  		<form method = "post" action="Edit">
             <div>
             <input type="text" name="firstname" size="20px" placeholder="Enter New Firstname"> <br>

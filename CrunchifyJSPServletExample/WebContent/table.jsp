@@ -33,7 +33,7 @@
 <title>Table</title>
 </head>
 <body>
-<div class="">
+<div>
 <table>
 <% 
 	List<Student> list = new ArrayList<Student>();
@@ -46,6 +46,7 @@
 		<th>School</th>
 		<th>Username</th>
 		<th>Password</th>
+		<th></th>
 	</tr>
 	<%for (Student s: list){
 		%>
@@ -56,6 +57,7 @@
 			<td><%= s.getSchool() %></td>
 			<td><%= s.getUsername() %></td>
 			<td><%= s.getPassword() %></td>
+			<td><form><button formaction="Edit.jsp" type="submit">Edit</button><button formaction="Delete.jsp" type="submit">Delete</button></td>
 		</tr>	
 		<%
 	} %>

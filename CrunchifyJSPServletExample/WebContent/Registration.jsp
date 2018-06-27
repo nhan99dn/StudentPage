@@ -55,13 +55,15 @@
 		height: 150px;
 		border-radius: 50%;
 		margin-top:-75px;
-		margin-bottom: 50px;
+		margin-bottom: 20px;
 	}
 </style>
 </head>
 <body>
+
 <div class="container" >
 	<img id="book" src='https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?cs=srgb&dl=blur-book-girl-373465.jpg&fm=jpg'>
+        <h1>Register</h1>
         <form action="insert" method ="post">
             <div class="form-input">
             <input type="text" name="firstname" size="20px" placeholder="Enter First Name"> <br>
