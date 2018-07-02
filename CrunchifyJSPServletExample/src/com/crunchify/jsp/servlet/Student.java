@@ -5,7 +5,7 @@ public class Student {
 	private int id;
 	private String firstname;
 	private String lastname;
-	private int year;
+	private String year;
 	private String school;
 	private String username;
 	private String password;
@@ -55,14 +55,14 @@ public class Student {
 	}
 	
 	//year getter
-	public int getYear() {
+	public String getYear() {
 		
 		return this.year;
 		
 	}
 	
 	//year setter
-	public void setYear(int year) {
+	public void setYear(String year) {
 		
 		this.year = year;
 		

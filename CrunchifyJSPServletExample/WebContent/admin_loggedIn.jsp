@@ -30,7 +30,7 @@
 </head>
 <body>
 <h1>
-	Welcome <% out.print(student.getFirstName() + " " + student.getLastName()) ;%>
+	Welcome administrator <% out.print(student.getFirstName() + " " + student.getLastName()) ;%>
 	<br>
 	<form action="Edit.jsp">
 	<button type= "submit">Edit Profile</button>
@@ -38,6 +38,7 @@
 	<button type="submit" formaction="page">View table</button>
 	<button type="submit" formaction="Delete.jsp">Delete Student</button>
 	<button type="submit" formaction="logout">Log out</button>
+	<button type="submit" formaction="addAdmin.jsp">Add Admin</button>
 	</form>
 </h1>
 </body>

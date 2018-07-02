@@ -4,7 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.crunchify.jsp.servlet.*"%>
 <%@page import="com.crunchify.jsp.servlet.dao.*" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,6 +29,12 @@
 	th,td {
 		text-align: center;
 		padding: 10px;
+	}
+	a{
+		color: black;
+	}
+	a:hover{
+		color: rgb(40, 135, 87);
 	}
 	div{
 		text-align: center;	
@@ -72,6 +78,7 @@
 	}%>
 </table>
 <div>
+<br>
 	<%--For displaying Previous link except for the 1st page --%>
     <c:if test="${currentPage != 1}">
         <span><a href="page?page=${currentPage - 1}">Previous</a></span>
@@ -82,7 +89,7 @@
             <c:forEach begin="1" end="${noOfPages}" var="i">
                 <c:choose>
                     <c:when test="${currentPage eq i}">
-                        <span>${i}</span>
+                        <span style="color: green;">${i}</span>
                     </c:when>
                     <c:otherwise>
                         <span><a href="page?page=${i}">${i}</a></span>

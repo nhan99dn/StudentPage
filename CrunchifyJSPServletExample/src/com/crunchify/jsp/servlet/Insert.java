@@ -38,9 +38,10 @@ public class Insert extends HttpServlet {
 			 RequestDispatcher toRegis = request.getRequestDispatcher("Registration.jsp");
 			 out.println("<font color=red>Please fill all the fields</font>");
 			 toRegis.include(request, response);
-		} else
+		}
+		else
 			try {
-				if(st.getStudent(username) == null ) {
+				if(st.getStudent(username) != null ) {
 					 RequestDispatcher toRegis = request.getRequestDispatcher("Registration.jsp");
 					 out.println("<font color = red>Your username is used. Please try again</font>");
 					 toRegis.include(request,response);

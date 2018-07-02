@@ -52,23 +52,23 @@ function myFunction() {
 <table id ="nat">
 <tr>	
 	<td>First Name</td>
-	<td><%= student.getFirstName() %></td>
+	<td><%=student.getFirstName()%></td>
 </tr>
 <tr>
 	<td>Last Name</td>
-	<td><%= student.getLastName() %></td>
+	<td><%=student.getLastName()%></td>
 </tr>
 <tr>
 	<td>Year</td>
-	<td><%= student.getYear() %></td>
+	<td><%=student.getYear()%></td>
 </tr>
 <tr>
 	<td>School</td>
-	<td><%= student.getSchool() %></td>
+	<td><%=student.getSchool()%></td>
 </tr>
 <tr>
 	<td>Username</td>
-	<td><%= student.getUsername() %></td>
+	<td><%=student.getUsername()%></td>
 </tr>
 <tr>
 	<td>Password</td>

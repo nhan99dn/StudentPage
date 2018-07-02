@@ -19,6 +19,10 @@
     <servlet-class>com.crunchify.jsp.servlet.LoginController</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>AddAdmin</servlet-name>
+    <servlet-class>com.crunchify.jsp.servlet.AddAdmin</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>Logout</servlet-name>
     <servlet-class>com.crunchify.jsp.servlet.Logout</servlet-class>
   </servlet>
@@ -33,6 +37,10 @@
   <servlet-mapping>
     <servlet-name>Insert</servlet-name>
     <url-pattern>/insert</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddAdmin</servlet-name>
+    <url-pattern>/addAdmin</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Page</servlet-name>

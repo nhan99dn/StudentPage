@@ -30,17 +30,19 @@ public class LoginController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		try {
+			//Get username, password and checkbox
 			Student student = new Student();
 			student.setUsername(request.getParameter("username"));
 			student.setPassword(request.getParameter("password"));
 			String rememberMe = request.getParameter("rememberBox");
 			
 			student = Validate.checkValid(student);
-			
-			
+	
 			if(student.isValid()) {
 				session = request.getSession();
 				session.setAttribute("student", st.getStudent(student.getUsername()));
+				
+				//Make and Kill cookies
 				if(rememberMe != null && rememberMe.equals("true") ) {
 					FormCookie obj = new FormCookie();
 					obj.createCookie(student, rememberMe, response);
@@ -51,9 +53,22 @@ public class LoginController extends HttpServlet {
 					obj.killCookie(response);
 					System.out.println("Killed cookie of" + student.getUsername());
 				}
-				RequestDispatcher rd = request.getRequestDispatcher("LoggedInPage.jsp");
-				rd.forward(request, response);	
-				System.out.println("Logged in, welcome" + student.getUsername());
+				
+				//initialize the admin user
+				Admin ad_obj = new Admin();
+				ad_obj.init();
+				
+				//Admin authorization	
+				if(ad_obj.isAdmin(student.getUsername(),student.getPassword())) {
+					RequestDispatcher rd = request.getRequestDispatcher("admin_loggedIn.jsp");
+					rd.forward(request, response);
+					System.out.println("Logged in, welcome administrator: " + student.getUsername());
+				}
+				else {
+					RequestDispatcher rd = request.getRequestDispatcher("user_LoggedIn.jsp");
+					rd.forward(request, response);
+					System.out.println("Logged in, welcome user: " + student.getUsername());
+				}
 			}
 			else{
 				RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
