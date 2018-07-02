@@ -65,16 +65,15 @@ public class Edit extends HttpServlet {
 					rd.forward(request, response);
 					out.print("<font color=red>Update successfully!!");
 					ps.close();
-					
 				}else {
-					out.print("Your username or password were incorrect, Please type again!");
+					RequestDispatcher rd = request.getRequestDispatcher("Edit.jsp");
+					System.out.println("incorrect username");
+					out.print("<font color=red>Your username or password were incorrect, Please type again!<font>");
+					rd.include(request, response);
 				}
-				
-			}catch(ClassNotFoundException e) {e.printStackTrace();}
+			}
+			catch(ClassNotFoundException e) {e.printStackTrace();}
 			catch(SQLException e) {e.printStackTrace();}
-			
-			
-			
 		}	
 	}
 }

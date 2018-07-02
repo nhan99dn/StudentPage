@@ -9,8 +9,6 @@ public class Validate {
 	
 	public static Student checkValid(Student student) {
 		
-		String firstname = student.getFirstName();
-		String lastname = student.getLastName();
 		String username = student.getUsername();
 		String password = student.getPassword();
 	
@@ -34,7 +32,7 @@ public class Validate {
 				student.setValid(false);
 			}
 			else if (more){
-				System.out.print("Welcome " + firstname + " " + lastname);
+				System.out.print("Welcome " + username );
 				student.setValid(true);
 			}
 			

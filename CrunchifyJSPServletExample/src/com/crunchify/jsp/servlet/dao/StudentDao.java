@@ -11,6 +11,7 @@ import com.crunchify.jsp.servlet.DbConn;
 import com.crunchify.jsp.servlet.Student;
 
 public class StudentDao {
+	//getStudent by username, check availability of Student by Username
 	public Student getStudent(String username) throws ClassNotFoundException, SQLException {
 		Connection con = DbConn.getConnection();
 		String sql = "SELECT * FROM students WHERE username =?";
@@ -30,10 +31,32 @@ public class StudentDao {
 		}
 		return null;
 	}
-	public static List<Student> getAll() throws ClassNotFoundException, SQLException{
+//	public static List<Student> getAll() throws ClassNotFoundException, SQLException{
+//		Connection con = DbConn.getConnection();
+//		String sql = "SELECT * FROM students";
+//		PreparedStatement ps = con.prepareStatement(sql);
+//		ResultSet rs = ps.executeQuery();
+//		List<Student> list = new ArrayList<Student>();
+//		while(rs.next()) {
+//			Student s = new Student();
+//			s.setId(rs.getInt("id"));
+//			s.setFirstName(rs.getString("firstName"));
+//			s.setLastName(rs.getString("lastName"));
+//			s.setYear(rs.getInt("year"));
+//			s.setUsername(rs.getString("username"));
+//			s.setSchool(rs.getString("school"));
+//			s.setPassword(rs.getString("password"));
+//			list.add(s);
+//		}
+//		return list;
+//	}
+	//Get Student by Offset, Limit
+	public List<Student> getStudentBy(int offset, int limit) throws ClassNotFoundException, SQLException{
 		Connection con = DbConn.getConnection();
-		String sql = "SELECT * FROM students";
+		String sql = "SELECT * FROM students limit ?, ?";
 		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, offset);
+		ps.setInt(2, limit);
 		ResultSet rs = ps.executeQuery();
 		List<Student> list = new ArrayList<Student>();
 		while(rs.next()) {
@@ -49,20 +72,11 @@ public class StudentDao {
 		}
 		return list;
 	}
-	public boolean checkUsename(String username){
-		try {
-		Connection con = DbConn.getConnection();
-		String sql = "SELECT * FROM students WHERE username = ?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, username);
-		ResultSet rs = ps.executeQuery();
-		if(rs.next()) {
-			return false;
-		}
-		return true;
-		}catch(Exception ex) {
-			
-			return false;
-		}
-	}
+	
+	//Get the total of Students
+	public int getTotal() throws ClassNotFoundException, SQLException{
+		List<Student> list = this.getStudentBy(0, 10000);
+		int total =  list.size();
+		return total;
+	} 
 }

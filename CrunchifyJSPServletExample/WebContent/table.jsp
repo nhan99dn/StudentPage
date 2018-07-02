@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.crunchify.jsp.servlet.*"%>
 <%@page import="com.crunchify.jsp.servlet.dao.*" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +15,7 @@
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
+    	font-family: Arial, Helvetica, sans-serif;
 	}
 	footer{
 		max-width:100%;
@@ -28,17 +30,19 @@
 		text-align: center;
 		padding: 10px;
 	}
+	div{
+		text-align: center;	
+	}
 	</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Table</title>
 </head>
 <body>
 <div>
+	<%
+		List<Student> list = (List) request.getAttribute("studentList");
+	%>
 <table>
-<% 
-	List<Student> list = new ArrayList<Student>();
-	list = StudentDao.getAll();
-%>
 	<tr>
 		<th>First Name</th>
 		<th>Last Name</th>
@@ -48,20 +52,49 @@
 		<th>Password</th>
 		<th></th>
 	</tr>
-	<%for (Student s: list){
+	<% for(Student student: list){
 		%>
 		<tr>
-			<td><%= s.getFirstName() %></td>
-			<td><%= s.getLastName() %></td>
-			<td><%= s.getYear() %></td>
-			<td><%= s.getSchool() %></td>
-			<td><%= s.getUsername() %></td>
-			<td><%= s.getPassword() %></td>
-			<td><form><button formaction="Edit.jsp" type="submit">Edit</button><button formaction="Delete.jsp" type="submit">Delete</button></td>
-		</tr>	
+		 	<td><%=student.getFirstName()%></td>
+			<td><%=student.getLastName()%></td>
+			<td><%=student.getYear()%></td>
+			<td><%=student.getSchool()%></td>
+			<td><%=student.getUsername()%></td>
+			<td><%=student.getPassword()%></td>
+			<td>
+				<form>
+					<button formaction="Edit.jsp" type="submit">Edit</button>
+					<button formaction="Delete.jsp" type="submit">Delete</button>
+				</form>
+			</td>
+        </tr>
 		<%
-	} %>
+	}%>
 </table>
+<div>
+	<%--For displaying Previous link except for the 1st page --%>
+    <c:if test="${currentPage != 1}">
+        <span><a href="page?page=${currentPage - 1}">Previous</a></span>
+    </c:if>
+ 
+    <%--For displaying Page numbers. 
+    The when condition does not display a link for the current page--%>
+            <c:forEach begin="1" end="${noOfPages}" var="i">
+                <c:choose>
+                    <c:when test="${currentPage eq i}">
+                        <span>${i}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <span><a href="page?page=${i}">${i}</a></span>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+     
+    <%--For displaying Next link --%>
+    <c:if test="${currentPage lt noOfPages}">
+        <span><a href="page?page=${currentPage + 1}">Next</a></span>
+    </c:if>
+</div>
 <footer></footer>
 </body>
 </html>

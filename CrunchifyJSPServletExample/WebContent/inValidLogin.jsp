@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>
+<h1 style="font-family: Arial, Helvetica, sans-serif;">
 	Invalid username and password.
 </h1>
 </body>

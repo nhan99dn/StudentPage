@@ -15,6 +15,7 @@
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
+    	font-family: Arial, Helvetica, sans-serif;
 	}
 	footer{
 		max-width:100%;

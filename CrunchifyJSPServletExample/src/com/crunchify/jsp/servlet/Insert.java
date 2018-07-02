@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,52 +32,58 @@ public class Insert extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		StudentDao st= new StudentDao();
+		
 		if (firstName.isEmpty() || lastName.isEmpty() || year.isEmpty() || school.isEmpty() || username.isEmpty() || password.isEmpty()) {
 			
 			 RequestDispatcher toRegis = request.getRequestDispatcher("Registration.jsp");
 			 out.println("<font color=red>Please fill all the fields</font>");
 			 toRegis.include(request, response);
-			 
-		}else if(!st.checkUsename(username)) {
-			 RequestDispatcher toRegis = request.getRequestDispatcher("Registration.jsp");
-			 out.println("<font color = red>Your username is used. Please try again</font>");
-			 toRegis.include(request,response);
-		}
-		else {	
+		} else
 			try {
-				
-				Connection conn = DbConn.getConnection();
-				
-				String query = "insert into Students(firstName,lastName,year,school,username,password) values(?,?,?,?,?,?)";
-				
-				PreparedStatement ps = conn.prepareStatement(query);
-				
-				ps.setString(1, firstName);
-				ps.setString(2, lastName);
-				ps.setString(3, year);
-				ps.setString(4, school);
-				ps.setString(5, username);
-				ps.setString(6, password);
-				
-				int row = ps.executeUpdate();
-				
-				if (row == 0) {
-					RequestDispatcher toRegis = request.getRequestDispatcher("Registration.jsp");
-					out.println("<font color = red>Your username already exists!</font>");
-					toRegis.include(request,response);
+				if(st.getStudent(username) == null ) {
+					 RequestDispatcher toRegis = request.getRequestDispatcher("Registration.jsp");
+					 out.println("<font color = red>Your username is used. Please try again</font>");
+					 toRegis.include(request,response);
 				}
-				else {
-					System.out.println("Update successfully!!!");
-					ps.close();
-					conn.close();
+				else {	
+					try {
+						
+						Connection conn = DbConn.getConnection();
+						
+						String query = "insert into Students(firstName,lastName,year,school,username,password) values(?,?,?,?,?,?)";
+						
+						PreparedStatement ps = conn.prepareStatement(query);
+						
+						ps.setString(1, firstName);
+						ps.setString(2, lastName);
+						ps.setString(3, year);
+						ps.setString(4, school);
+						ps.setString(5, username);
+						ps.setString(6, password);
+						
+						int row = ps.executeUpdate();
+						
+						if (row == 0) {
+							RequestDispatcher toRegis = request.getRequestDispatcher("Registration.jsp");
+							out.println("<font color = red>Your username already exists!</font>");
+							toRegis.include(request,response);
+						}
+						else {
+							System.out.println("Update successfully!!!");
+							ps.close();
+							conn.close();
+						}
+					}
+					catch (ClassNotFoundException e) {e.printStackTrace();}
+					catch (Exception e) {e.printStackTrace();}
+					
+					RequestDispatcher rd = request.getRequestDispatcher("InsertConfirmation.jsp");
+					rd.forward(request, response);
+					
 				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			catch (ClassNotFoundException e) {e.printStackTrace();}
-			catch (Exception e) {e.printStackTrace();}
-			
-			RequestDispatcher rd = request.getRequestDispatcher("InsertConfirmation.jsp");
-			rd.forward(request, response);
-			
-		}
 	}
 }

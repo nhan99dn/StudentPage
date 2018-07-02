@@ -12,6 +12,7 @@
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
+    	font-family: Arial, Helvetica, sans-serif;
 	}
 	footer{
 		max-width:100%;
@@ -66,22 +67,22 @@
 		<h1>Delete Student</h1>
  		<form method = "post" action="delete">
             <div>
-            <input type="text" name="firstname" size="20px" placeholder="Enter Firstname"> <br>
+            <input type="text" name="firstname" size="20px" placeholder="Enter Firstname" required> <br>
             </div>
             <div>
-            <input type="text" name="lastname" size="20px" placeholder="Enter Lastname"> <br>
+            <input type="text" name="lastname" size="20px" placeholder="Enter Lastname" required> <br>
             </div>
             <div>
-            <input type="text" name="year" size="20px" placeholder="Enter Year"> <br>
+            <input type="text" name="year" size="20px" placeholder="Enter Year" required> <br>
             </div>
             <div>
-            <input type="text" name="school" size="20px" placeholder="Enter School"><br>
+            <input type="text" name="school" size="20px" placeholder="Enter School" required><br>
             </div>
             <div>
-            <input type="text" name="username" size = "20px" placeholder="Enter Username"><br>
+            <input type="text" name="username" size = "20px" placeholder="Enter Username" required><br>
             </div>
             <div>
-            <input type="password" name= "password" size = "20px" placeholder="Enter Password">
+            <input type="password" name= "password" size = "20px" placeholder="Enter Password" required>
             </div>
         <button type="submit">Delete Student</button>  
         </form>

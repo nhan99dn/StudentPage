@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Registration</title>
 <style> 
 	body {
 		background-image: url("https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?cs=srgb&dl=contemporary-desk-eyeglasses-1006293.jpg&fm=jpg");
@@ -12,6 +12,7 @@
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
+    	font-family: Arial, Helvetica, sans-serif;
 	}
 	footer{
 		max-width:100%;
@@ -66,22 +67,22 @@
         <h1>Register</h1>
         <form action="insert" method ="post">
             <div class="form-input">
-            <input type="text" name="firstname" size="20px" placeholder="Enter First Name"> <br>
+            <input type="text" name="firstname" size="20px" placeholder="Enter First Name" required> <br>
             </div>
             <div class="form-input">
-            <input class = type="text" name="lastname" size="20px" placeholder="Enter Last Name"> <br>
+            <input class = type="text" name="lastname" size="20px" placeholder="Enter Last Name" required> <br>
             </div>
             <div class="form-input">
-            <input type="text" name="year" size="20px" placeholder="Enter Year"> <br>
+            <input type="text" name="year" size="20px" placeholder="Enter Year" required> <br>
             </div>
             <div class="form-input">
-            <input type="text" name="school" size="20px" placeholder="Enter School"><br>
+            <input type="text" name="school" size="20px" placeholder="Enter School" required><br>
             </div>
             <div class="form-input">
-            <input type="text" name="username" size = "20px" placeholder="Enter username"><br>
+            <input type="text" name="username" size = "20px" placeholder="Enter username" required><br>
             </div>
             <div class="form-input">
-            <input type="password" name= "password" size = "20px" placeholder="Enter password">
+            <input type="password" name= "password" size = "20px" placeholder="Enter password" required>
             </div>
         <button type="submit">Register Student</button>
         </form>

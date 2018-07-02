@@ -11,6 +11,7 @@
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
+    	font-family: Arial, Helvetica, sans-serif;
 	}
 	footer{
 		max-width:100%;
@@ -33,7 +34,7 @@
 		padding-left: 20px;
 	}
 	input#button{
-		margin-top: -10px;
+		margin-top: 10px;
 		width: 200px;
 		height: 30px;
 		border: none;
@@ -55,18 +56,38 @@
 <title>Login</title>
 </head>
 <body>
+	<%
+		Cookie[] cookies = request.getCookies();
+		String username = "";
+		String password = "";
+		String remember = "";
+		if (cookies != null){
+			for (Cookie ck : cookies){
+				if(ck.getName().equals("cookUser")){
+					username = ck.getValue();
+				}
+				if(ck.getName().equals("cookPass")){
+					password = ck.getValue();
+				}
+				if(ck.getName().equals("cookRem")){
+					remember = ck.getValue();
+				}
+			}
+		}
+	%>
 	<div class="container" >
-
 		<img src='https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?cs=srgb&dl=blur-book-girl-373465.jpg&fm=jpg'>
 		<h1>Login</h1>
         <form action="login" method ="post">
             <div class="form-input">
-            <input type="text" name="username" size="20px" placeholder="Enter User Name"><br>
+            <input type="text" name="username" size="20px" placeholder="Enter User Name" value="<%=username%>"><br>
             </div>
             <div class="form-input">
-            <input type="password" name="password" size="20px" placeholder="Enter Password"><br>
+            <input type="password" name="password" size="20px" placeholder="Enter Password" value="<%=password%>"><br>
             </div>
-            <br><br>
+            <label>
+        		<input type="checkbox" name="rememberBox" id="checkbox" value="true" checked ='<%=("true".equals(remember) ? "checked" : "")%>'> Remember me 
+     	 	</label><br>
         	<input id="button" type="submit" value="Log in">
         	<input id="button" type="submit" formaction= "Registration.jsp" value="Dont't have account? Register!">
         	</div>

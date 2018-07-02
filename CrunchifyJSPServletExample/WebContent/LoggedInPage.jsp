@@ -12,6 +12,7 @@
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
+    	font-family: Arial, Helvetica, sans-serif;
 	}
 	footer{
 		max-width:100%;
@@ -34,9 +35,9 @@
 	<form action="Edit.jsp">
 	<button type= "submit">Edit Profile</button>
 	<button type="submit" formaction="ViewProfile.jsp">View Profile</button>
-	<button type="submit" formaction="table.jsp">View table</button>
+	<button type="submit" formaction="page">View table</button>
 	<button type="submit" formaction="Delete.jsp">Delete Student</button>
-	<button type="submit" formaction="Login.jsp">Log out</button>
+	<button type="submit" formaction="logout">Log out</button>
 	</form>
 </h1>
 </body>
