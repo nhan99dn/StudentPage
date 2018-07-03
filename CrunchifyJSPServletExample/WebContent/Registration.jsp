@@ -7,8 +7,7 @@
 <title>Registration</title>
 <style> 
 	body {
-		background-image: url("https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?cs=srgb&dl=contemporary-desk-eyeglasses-1006293.jpg&fm=jpg");
-		margin: 0;
+		background-image: url("img/desk.jpg");
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
@@ -63,7 +62,7 @@
 <body>
 
 <div class="container" >
-	<img id="book" src='https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?cs=srgb&dl=blur-book-girl-373465.jpg&fm=jpg'>
+	<img id="book" src="img/desk.jpg">
         <h1>Register</h1>
         <form action="insert" method ="post">
             <div class="form-input">

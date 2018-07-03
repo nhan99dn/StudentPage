@@ -23,7 +23,7 @@ function myFunction() {
 		font-size: 25px;
 	}
 	body {
-		background-image: url("https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?cs=srgb&dl=contemporary-desk-eyeglasses-1006293.jpg&fm=jpg");
+		background-image: url("img/desk.jpg");
 		margin: 0;
    	 	background-repeat: no-repeat;
     	background-size: cover;

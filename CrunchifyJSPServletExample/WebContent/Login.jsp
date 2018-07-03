@@ -6,8 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style> 
 	body {
-		background-image: url("https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?cs=srgb&dl=contemporary-desk-eyeglasses-1006293.jpg&fm=jpg");
-		margin: 0;
+		background-image: url("img/desk.jpg");
    	 	background-repeat: no-repeat;
     	background-size: cover;
     	background-height: 100%;
@@ -76,7 +75,7 @@
 		}
 	%>
 	<div class="container" >
-		<img src='https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?cs=srgb&dl=blur-book-girl-373465.jpg&fm=jpg'>
+		<img src="img/book.jpg">
 		<h1>Login</h1>
         <form action="login" method ="post">
             <div class="form-input">

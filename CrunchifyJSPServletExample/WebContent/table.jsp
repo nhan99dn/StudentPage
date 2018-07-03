@@ -31,10 +31,13 @@
 		padding: 10px;
 	}
 	a{
+		text-decoration: none;
 		color: black;
+		font-size: 17px;
 	}
 	a:hover{
 		color: rgb(40, 135, 87);
+		text-decoration: underline;
 	}
 	div{
 		text-align: center;	
@@ -47,6 +50,7 @@
 <div>
 	<%
 		List<Student> list = (List) request.getAttribute("studentList");
+		int id = 0;
 	%>
 <table>
 	<tr>
@@ -60,7 +64,7 @@
 	</tr>
 	<% for(Student student: list){
 		%>
-		<tr>
+		<tr id="<%=id%>">
 		 	<td><%=student.getFirstName()%></td>
 			<td><%=student.getLastName()%></td>
 			<td><%=student.getYear()%></td>
@@ -69,10 +73,11 @@
 			<td><%=student.getPassword()%></td>
 			<td>
 				<form>
-					<button formaction="Edit.jsp" type="submit">Edit</button>
-					<button formaction="Delete.jsp" type="submit">Delete</button>
+					<button formaction="Edit.jsp" type="submit" onclick="directEdit()">Edit</button>
+					<button formaction="Delete.jsp" type="submit" onclick="directDelete()">Delete</button>
 				</form>
 			</td>
+			<%id++;%>
         </tr>
 		<%
 	}%>
@@ -85,11 +90,11 @@
     </c:if>
  
     <%--For displaying Page numbers. 
-    The when condition does not display a link for the current page--%>
+    The when condition does not display a link for the current page--%>	
             <c:forEach begin="1" end="${noOfPages}" var="i">
                 <c:choose>
                     <c:when test="${currentPage eq i}">
-                        <span style="color: green;">${i}</span>
+                        <span style="color: green;font-size:17px;">${i}</span>
                     </c:when>
                     <c:otherwise>
                         <span><a href="page?page=${i}">${i}</a></span>

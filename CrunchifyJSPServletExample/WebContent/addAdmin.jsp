@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style> 
 	body {
-		background-image: url("https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?cs=srgb&dl=contemporary-desk-eyeglasses-1006293.jpg&fm=jpg");
+		background-image: url("img/desk.jpg");
 		margin: 0;
    	 	background-repeat: no-repeat;
     	background-size: cover;
@@ -40,7 +40,7 @@
 		border: none;
 		font-size: 13px;
 	}
-	input:hover{
+	input#button:hover{
 		background-color: rgb(230,190,190);
 		color: white;
 	}
@@ -57,16 +57,16 @@
 </head>
 <body>
 	<div class="container" >
-		<img src='https://images.pexels.com/photos/373465/pexels-photo-373465.jpeg?cs=srgb&dl=blur-book-girl-373465.jpg&fm=jpg'>
+		<img src='img/book.jpg'>
 		<h1>Add Admin</h1>
         <form action="addAdmin" method ="post">
             <div class="form-input">
-            <input type="text" name="username" size="20px" placeholder="Enter User Name"><br>
+            <input type="text" name="username" size="20px" placeholder="Enter User Name" required><br>
             </div>
             <div class="form-input">
-            <input type="password" name="password" size="20px" placeholder="Enter Password"><br>
+            <input type="password" name="password" size="20px" placeholder="Enter Password" required><br>
             </div><br>
-			<input type="submit" value="Add"></button>
+			<input id="button" type="submit" value="Add"></button>
         	</div>
         </form>
     </div>

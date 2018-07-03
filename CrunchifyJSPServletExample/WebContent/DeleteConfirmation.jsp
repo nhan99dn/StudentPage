@@ -10,7 +10,7 @@
 <title>Display</title>
 <style>
 	body {
-		background-image: url("https://images.pexels.com/photos/1006293/pexels-photo-1006293.jpeg?cs=srgb&dl=contemporary-desk-eyeglasses-1006293.jpg&fm=jpg");
+		background-image: url("img/book.jpg");
 		margin: 0;
    	 	background-repeat: no-repeat;
     	background-size: cover;

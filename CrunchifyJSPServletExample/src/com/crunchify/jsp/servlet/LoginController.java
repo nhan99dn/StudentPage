@@ -53,10 +53,8 @@ public class LoginController extends HttpServlet {
 					obj.killCookie(response);
 					System.out.println("Killed cookie of" + student.getUsername());
 				}
-				
-				//initialize the admin user
+				//init Admin object
 				Admin ad_obj = new Admin();
-				ad_obj.init();
 				
 				//Admin authorization	
 				if(ad_obj.isAdmin(student.getUsername(),student.getPassword())) {
