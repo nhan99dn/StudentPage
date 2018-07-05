@@ -50,7 +50,6 @@
 <div>
 	<%
 		List<Student> list = (List) request.getAttribute("studentList");
-		int id = 0;
 	%>
 <table>
 	<tr>
@@ -60,27 +59,27 @@
 		<th>School</th>
 		<th>Username</th>
 		<th>Password</th>
+		<th>Authen</th>
 		<th></th>
 	</tr>
 	<% for(Student student: list){
 		%>
-		<tr id="<%=id%>">
+		<tr>
 		 	<td><%=student.getFirstName()%></td>
 			<td><%=student.getLastName()%></td>
 			<td><%=student.getYear()%></td>
 			<td><%=student.getSchool()%></td>
 			<td><%=student.getUsername()%></td>
 			<td><%=student.getPassword()%></td>
+			<td><%=student.getAuthen()%></td>
 			<td>
 				<form>
 					<button formaction="Edit.jsp" type="submit" onclick="directEdit()">Edit</button>
 					<button formaction="Delete.jsp" type="submit" onclick="directDelete()">Delete</button>
 				</form>
 			</td>
-			<%id++;%>
         </tr>
-		<%
-	}%>
+	<%}%>
 </table>
 <div>
 <br>
@@ -88,7 +87,6 @@
     <c:if test="${currentPage != 1}">
         <span><a href="page?page=${currentPage - 1}">Previous</a></span>
     </c:if>
- 
     <%--For displaying Page numbers. 
     The when condition does not display a link for the current page--%>	
             <c:forEach begin="1" end="${noOfPages}" var="i">

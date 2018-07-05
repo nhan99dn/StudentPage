@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Delete</title>
 <style> 
 	body {
 		background-image: url("img/desk.jpg");
@@ -19,7 +18,7 @@
 	}
 	.container{
 		width: 650px;
-		height: 500px;
+		height: 350px;
 		text-align:center;
 		background-color: rgb(51, 85, 51, 0.3);
 		margin:0 auto ;
@@ -34,46 +33,48 @@
 		padding-left: 20px;
 	}
 	input#button{
-		margin-top: -10px;
-		width: 150px;
-		height: 20px;
+		margin-top: 10px;
+		width: 200px;
+		height: 30px;
 		border: none;
+		font-size: 13px;
 	}
-	button{
-		width: 150px;
-		height:30px;
-		margin-top:30px;
-	}
-	button:hover{
+	input#button:hover{
 		background-color: rgb(230,190,190);
 		color: white;
-		border: none;
 	}
-
-	div.container img#book{
+	.container img{
 		width:150px;
 		height: 150px;
 		border-radius: 50%;
 		margin-top:-75px;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 	}
-
+	span{
+		color:green;
+	}
 </style>
+<title>Login</title>
 </head>
 <body>
-	<div class="container">
-	<img id="book" src='img/book.jpg'>
-		<h1>Delete Student</h1>
- 		<form method = "post" action="delete">
-            <div>
-            <input type="text" name="username" size = "20px" placeholder="Enter Username" required><br>
+	<div class="container" >
+		<img src="img/book.jpg">
+		<h1>One more thing...Please verify</h1>
+        <form action="authen" method ="post">
+            <div class="form-input">
+            <input type="text" name="username" size="20px" placeholder="Enter your username"><br>
             </div>
+            <div class="form-input">
+            <input type="text" name="code" size="20px" placeholder="Enter Verification Code"><br>
             <div>
-            <input type="password" name= "password" size = "20px" placeholder="Enter Password" required>
-            </div>
-        <button type="submit">Delete Student</button>  
+        	<input id="button" type="submit" value="Submit">
+        	</div>
+        	<span><strong>Did not get the code?</strong></span><button type="submit" id="resend" onclick="resendEmail()">Resend!</button>
         </form>
     </div>
-<footer></footer>
+    <footer></footer>
+    <script>
+ 
+    </script>
 </body>
 </html>

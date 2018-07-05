@@ -50,6 +50,7 @@ function myFunction() {
 	String school = request.getParameter("school");
 	String username = request.getParameter("username");
 	String password = request.getParameter("password");
+	String email = request.getParameter("email");
 %>
 <table id ="nat">
 <tr>
@@ -70,6 +71,10 @@ function myFunction() {
 </tr>
 <tr>
 	<td>Username</td>
+	<td><%= email %></td>
+</tr>
+<tr>
+	<td>Username</td>
 	<td><%= username %></td>
 </tr>
 <tr>
@@ -82,6 +87,7 @@ function myFunction() {
 use " <i> select * from student; </i> " in mysql client to verify it.<br>
 <form action="Login.jsp">
 <button type="submit">Log in</button>
+<button type="submit" formaction="authen.jsp">Verify</button>
 </form>
 <footer></footer>
 </body>

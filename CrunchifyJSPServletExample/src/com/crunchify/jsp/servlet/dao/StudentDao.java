@@ -31,6 +31,18 @@ public class StudentDao {
 		}
 		return null;
 	}
+	//getAdmin by username, check availability
+	public boolean haveAdmin(String username) throws ClassNotFoundException, SQLException {
+		Connection con = DbConn.getConnection();
+		String sql = "SELECT * FROM admin_user WHERE username =?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, username);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			return true;
+		}
+		return false;
+	}
 
 	//Get Student by Offset, Limit
 	public List<Student> getStudentBy(int offset, int limit) throws ClassNotFoundException, SQLException{
@@ -50,6 +62,7 @@ public class StudentDao {
 			s.setUsername(rs.getString("username"));
 			s.setSchool(rs.getString("school"));
 			s.setPassword(rs.getString("password"));
+			s.setAuthen(rs.getBoolean("authen"));
 			list.add(s);
 		}
 		return list;

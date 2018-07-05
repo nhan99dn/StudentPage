@@ -9,7 +9,8 @@ public class Student {
 	private String school;
 	private String username;
 	private String password;
-	private boolean valid ;
+	private boolean valid;
+	private boolean authen;
 	
 	//index getter
 	public int getId() {
@@ -113,6 +114,7 @@ public class Student {
 	public boolean isValid() {
 		
 		return valid;
+		
 	}
 	
 	//Valid setter
@@ -121,4 +123,16 @@ public class Student {
 		this.valid = valid;
 	}
 	
+	//authenticate setter
+	public void setAuthen(boolean authen) {
+		
+		this.authen = authen;
+		
+	}
+	
+	public boolean getAuthen() {
+		
+		return this.authen;
+		
+	}
 }

@@ -19,7 +19,7 @@
 	}
 	.container{
 		width: 650px;
-		height: 500px;
+		height: 600px;
 		text-align:center;
 		background-color: rgb(51, 85, 51, 0.3);
 		margin:0 auto ;
@@ -62,7 +62,7 @@
 <body>
 
 <div class="container" >
-	<img id="book" src="img/desk.jpg">
+	<img id="book" src="img/book.jpg">
         <h1>Register</h1>
         <form action="insert" method ="post">
             <div class="form-input">
@@ -78,10 +78,16 @@
             <input type="text" name="school" size="20px" placeholder="Enter School" required><br>
             </div>
             <div class="form-input">
+            <input type="text" name="email" size = "20px" placeholder="Enter email" required>
+            </div>
+            <div class="form-input">
             <input type="text" name="username" size = "20px" placeholder="Enter username" required><br>
             </div>
             <div class="form-input">
             <input type="password" name= "password" size = "20px" placeholder="Enter password" required>
+            </div>
+            <div class="form-input">
+            <input type="password" name= "password_again" size = "20px" placeholder="Enter password again" required>
             </div>
         <button type="submit">Register Student</button>
         </form>

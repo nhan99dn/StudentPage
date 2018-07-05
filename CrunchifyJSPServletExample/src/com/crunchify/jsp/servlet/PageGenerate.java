@@ -27,11 +27,13 @@ public class PageGenerate extends HttpServlet {
 		StudentDao stdDao = new StudentDao();
 		try {
 			List<Student> list = stdDao.getStudentBy((page - 1) * recordsPerPage, recordsPerPage);
-			int numStudent = stdDao.getTotal();
-			int numPage = (int) Math.ceil(numStudent * 1.0 / recordsPerPage);
+			int numStudent = stdDao.getTotal(); // get the total of students from database
+			int numPage = (int) Math.ceil(numStudent * 1.0 / recordsPerPage); 
+			
 			request.setAttribute("studentList" , list);
 			request.setAttribute("noOfPages", numPage);
 			request.setAttribute("currentPage", page);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("table.jsp");
 			rd.include(request, response);
 		} 

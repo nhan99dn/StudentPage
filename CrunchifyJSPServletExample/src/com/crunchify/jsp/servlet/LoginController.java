@@ -2,11 +2,14 @@ package com.crunchify.jsp.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +45,13 @@ public class LoginController extends HttpServlet {
 				session = request.getSession();
 				session.setAttribute("student", st.getStudent(student.getUsername()));
 				
+				//check if the user has authenticated or not
+				if(!getAuthen(student.getUsername(),request,response)) {
+					RequestDispatcher rd = request.getRequestDispatcher("authen.jsp");
+					rd.forward(request, response);
+					
+				}
+				
 				//Make and Kill cookies
 				if(rememberMe != null && rememberMe.equals("true") ) {
 					FormCookie obj = new FormCookie();
@@ -74,5 +84,31 @@ public class LoginController extends HttpServlet {
 				rd.include(request, response);
 			}
 		}catch (Exception e) {e.printStackTrace();}
+	}
+	
+	protected boolean getAuthen(String username, HttpServletRequest request, HttpServletResponse response) throws SQLException {
+		int numBool = 0;
+		Connection conn = null;
+		try{
+			conn = DbConn.getConnection();
+		}
+		catch(Exception e) {e.printStackTrace();}
+		
+		String query = "Select authen "
+				+ "from Students where username = ?";
+		
+		PreparedStatement ps = conn.prepareStatement(query);
+	
+		ps.setString(1, username);
+		ResultSet rs = ps.executeQuery();
+		
+		if (rs.next()) {
+			numBool = rs.getInt("authen");
+			System.out.println(numBool);
+		}
+		if(numBool == 1) {
+			return true;
+		}
+		return false;	
 	}
 }
