@@ -27,7 +27,10 @@ public class LoginController extends HttpServlet {
 	
 		HttpSession session;
 		StudentDao st = new StudentDao();
+	protected synchronized void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String username = request.getParameter("username");
 		
+	}
 	protected synchronized void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		PrintWriter out = response.getWriter();
@@ -43,7 +46,7 @@ public class LoginController extends HttpServlet {
 	
 			if(student.isValid()) {
 				session = request.getSession();
-				session.setAttribute("student", st.getStudent(student.getUsername()));
+				session.setAttribute("student", st.getStudentByUserName(student.getUsername()));
 				
 				//check if the user has authenticated or not
 				if(!getAuthen(student.getUsername(),request,response)) {
@@ -53,7 +56,7 @@ public class LoginController extends HttpServlet {
 				}
 				
 				//Make and Kill cookies
-				if(rememberMe != null && rememberMe.equals("true") ) {
+				if(rememberMe != null && rememberMe.equals("true")){
 					FormCookie obj = new FormCookie();
 					obj.createCookie(student, rememberMe, response);
 					System.out.println("Created cookie of" + student.getUsername());

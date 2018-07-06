@@ -12,7 +12,7 @@ import com.crunchify.jsp.servlet.Student;
 
 public class StudentDao {
 	//getStudent by username, check availability of Student by Username
-	public Student getStudent(String username) throws ClassNotFoundException, SQLException {
+	public Student getStudentByUserName(String username) throws ClassNotFoundException, SQLException {
 		Connection con = DbConn.getConnection();
 		String sql = "SELECT * FROM students WHERE username =?";
 		PreparedStatement ps = con.prepareStatement(sql);
@@ -27,16 +27,40 @@ public class StudentDao {
 			s.setUsername(rs.getString("username"));
 			s.setSchool(rs.getString("school"));
 			s.setPassword(rs.getString("password"));
+			s.setEmail(rs.getString("email"));
+			return s;
+		}
+		return null;
+	}
+	
+	//get Student by Id
+	public Student getStudentById(int id) throws SQLException, ClassNotFoundException {
+		Connection con = DbConn.getConnection();
+		String sql = "SELECT * FROM students WHERE id = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next()) {
+			Student s = new Student();
+			s.setId(rs.getInt("id"));
+			s.setFirstName(rs.getString("firstName"));
+			s.setLastName(rs.getString("lastName"));
+			s.setYear(rs.getString("year"));
+			s.setUsername(rs.getString("username"));
+			s.setSchool(rs.getString("school"));
+			s.setPassword(rs.getString("password"));
+			s.setEmail(rs.getString("email"));
 			return s;
 		}
 		return null;
 	}
 	//getAdmin by username, check availability
-	public boolean haveAdmin(String username) throws ClassNotFoundException, SQLException {
+	public boolean haveAdmin(String username, String password) throws ClassNotFoundException, SQLException {
 		Connection con = DbConn.getConnection();
-		String sql = "SELECT * FROM admin_user WHERE username =?";
+		String sql = "SELECT * FROM admin_user WHERE username =? and password = ?";
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, username);
+		ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();
 		if(rs.next()) {
 			return true;

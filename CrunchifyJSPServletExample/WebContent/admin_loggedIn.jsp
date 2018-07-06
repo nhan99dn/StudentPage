@@ -18,6 +18,10 @@
 		max-width:100%;
 		height: 700px;
 	}
+	a{
+		text-decoration: none;
+		color: black;
+	}
 </style>
 <script>
 
@@ -26,20 +30,23 @@
 <%
 	Student student = new Student();
 	student = (Student) session.getAttribute("student");
+	if(student==null){
+		response.sendRedirect("Login.jsp");
+	}
 %>
 </head>
 <body>
 <h1>
 	Welcome administrator <% out.print(student.getFirstName() + " " + student.getLastName()) ;%>
 	<br>
-	<form action="Edit.jsp">
-	<button type= "submit">Edit Profile</button>
+	<form action="logout">
+	<button type="submit">Log out</button>
 	<button type="submit" formaction="ViewProfile.jsp">View Profile</button>
 	<button type="submit" formaction="page">View table</button>
-	<button type="submit" formaction="Delete.jsp">Delete Student</button>
-	<button type="submit" formaction="logout">Log out</button>
 	<button type="submit" formaction="addAdmin.jsp">Add Admin</button>
 	</form>
+	<button><a class="button" href="Delete.jsp?id=<%=student.getId()%>">Delete Student</a></button>
+	<button><a class="button" href="Edit.jsp?id=<%=student.getId() %>">Edit Profile</a></button>
 </h1>
 </body>
 <footer></footer>

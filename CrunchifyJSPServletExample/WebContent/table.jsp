@@ -42,6 +42,7 @@
 	div{
 		text-align: center;	
 	}
+	
 	</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Table</title>
@@ -49,7 +50,7 @@
 <body>
 <div>
 	<%
-		List<Student> list = (List) request.getAttribute("studentList");
+	List<Student> list = (List) request.getAttribute("studentList");
 	%>
 <table>
 	<tr>
@@ -73,10 +74,8 @@
 			<td><%=student.getPassword()%></td>
 			<td><%=student.getAuthen()%></td>
 			<td>
-				<form>
-					<button formaction="Edit.jsp" type="submit" onclick="directEdit()">Edit</button>
-					<button formaction="Delete.jsp" type="submit" onclick="directDelete()">Delete</button>
-				</form>
+				<a href="Edit.jsp?id=<%=student.getId()%>">Edit</a>
+				<a href="Delete.jsp?id=<%=student.getId()%>">Delete</a>
 			</td>
         </tr>
 	<%}%>

@@ -46,7 +46,7 @@ public class AddAdmin extends HttpServlet {
 				rd.include(request, response);
 			}
 			else {
-				if(st.haveAdmin(student.getUsername())) {
+				if(st.haveAdmin(student.getUsername(),student.getPassword())) {
 					 RequestDispatcher rd = request.getRequestDispatcher("addAdmin.jsp");
 					 out.println("<font color = red>Your user have been administrated, check again!</font>");
 					 rd.include(request,response);
@@ -58,7 +58,7 @@ public class AddAdmin extends HttpServlet {
 				ps.setString(1, student.getUsername());
 				ps.setString(2, student.getPassword());
 				
-				int row = ps.executeUpdate();
+				ps.executeUpdate();
 				
 				System.out.println("Update successfully!!!");
 				response.sendRedirect("admin_loggedIn.jsp");

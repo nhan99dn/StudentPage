@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.crunchify.jsp.servlet.dao.StudentDao" %>
+<%@ page import="com.crunchify.jsp.servlet.Student" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +21,7 @@
 	}
 	.container{
 		width: 650px;
-		height: 500px;
+		height: 550px;
 		text-align:center;
 		background-color: rgb(51, 85, 51, 0.3);
 		margin:0 auto ;
@@ -61,27 +63,40 @@
 </style>
 </head>
 <body>
+<%
+	int id = 1;
+	if (request.getParameter("id")!= null){
+		id = Integer.parseInt(request.getParameter("id"));
+	}
+	StudentDao stdDao = new StudentDao();
+	Student student = stdDao.getStudentById(id);
+	if(student==null){
+		response.sendRedirect("Login.jsp");
+	}
+%>
 	<div class="container">
 	<img id="book" src="img/book.jpg">
 	<h1>Edit Student</h1>
- 		<form method = "post" action="Edit">
+ 			<form method = "post" action="edit">
+ 			<strong>ID:</strong>
+            <input style="border:none; margin-bottom: 10px;" type="text" name="id" size="10px" value="<%=student.getId()%>" readonly><br>
             <div>
-            <input type="text" name="firstname" size="20px" placeholder="Enter New Firstname" required> <br>
+            <input type="text" name="firstname" size="20px" placeholder="Enter New Firstname" value="<%=student.getFirstName()%>" required > <br>
             </div>
             <div>
-            <input type="text" name="lastname" size="20px" placeholder="Enter New Lastname" required> <br>
+            <input type="text" name="lastname" size="20px" placeholder="Enter New Lastname" value="<%=student.getLastName()%>" required> <br>
             </div>
             <div>
-            <input type="text" name="year" size="20px" placeholder="Enter New Year" required> <br>
+            <input type="text" name="year" size="20px" placeholder="Enter New Year" value="<%=student.getYear()%>" required> <br>
             </div>
             <div>
-            <input type="text" name="school" size="20px" placeholder="Enter New School" required><br>
+            <input type="text" name="school" size="20px" placeholder="Enter New School" value="<%=student.getSchool()%>" required><br>
             </div>
             <div>
-            <input type="text" name="username" size = "20px" placeholder="Enter Username" required><br>
+            <input type="text" name="username" size = "20px" placeholder="Enter Admin Username" required><br>
             </div>
             <div>
-            <input type="password" name= "password" size = "20px" placeholder="Enter Password" required>
+            <input type="password" name= "password" size = "20px" placeholder="Enter Admin Password" required>
             </div>
         <button type="submit">Edit</button>  
         </form>

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -14,51 +13,51 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.crunchify.jsp.servlet.dao.StudentDao;
+
 /**
  * Servlet implementation class Delete
  */
 @WebServlet("/Delete")
 public class Delete extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Connection conn = null;
+		StudentDao stdDao = new StudentDao();
+		int id = Integer.parseInt(request.getParameter("id"));
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		PrintWriter out = response.getWriter();
 		
-		if (username.isEmpty() || password.isEmpty()) {
-			 RequestDispatcher rd = request.getRequestDispatcher("Registration.jsp");
-			 out.println("<font color=red>Please fill all the fields</font>");
-			 rd.include(request, response);
-		}
-		else 
-		{	
-			try {
-				
-				Connection conn = DbConn.getConnection();
-				
-				String query = "DELETE FROM Students where "
-						+ "username = ? and password = ?";
-				
-				PreparedStatement ps = conn.prepareStatement(query);
-				
-				ps.setString(1, username);
-				ps.setString(2, password);
-			
-				ps.executeQuery();
-		
-				RequestDispatcher rd = request.getRequestDispatcher("DeleteConfirmation.jsp");
-				rd.forward(request, response);
-
-				ps.close();
-				conn.close();
-				
+		try {
+			if (!stdDao.haveAdmin(username, password)) {
+				 RequestDispatcher rd = request.getRequestDispatcher("Delete.jsp?id=" + id);
+				 out.println("<font color=red>Wrong admin username and password</font>");
+				 rd.include(request, response);
 			}
-			catch (ClassNotFoundException e) {e.printStackTrace();}
-			catch (Exception e) {e.printStackTrace();}
-
+		} catch (ClassNotFoundException | SQLException e1) {
+			e1.printStackTrace();
 		}
-	}
+		
+		try {		
+		conn = DbConn.getConnection();
+			
+		String sql = "DELETE FROM Students where "
+				+ "id = ?";
+		
+		PreparedStatement ps = conn.prepareStatement(sql);
+				
+		ps.setInt(1, id);
+		
+		ps.executeUpdate();
 
+		response.sendRedirect("page?page=1");
+
+		ps.close();
+		conn.close();
+		}
+		catch(Exception e) {e.printStackTrace();}
+	}
 }

@@ -25,6 +25,9 @@
 <%
 	Student student = new Student();
 	student = (Student) session.getAttribute("student");
+	if(student==null){
+		response.sendRedirect("Login.jsp");
+	}
 %>
 </head>
 <body>

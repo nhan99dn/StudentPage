@@ -22,68 +22,29 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/authen")
 public class authen extends HttpServlet {
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		PrintWriter out = response.getWriter();
-		String username = request.getParameter("username");
 		String code = request.getParameter("code");
+		String email = request.getParameter("email");
+		PrintWriter out = response.getWriter();
 		
 		try {
-			if(checkEmail(username,request,response)) {
-				RequestDispatcher rd = request.getRequestDispatcher("authen.jsp");
-				out.println("<font color = red>Your username was incorrect!</font>");
-				rd.include(request, response);
-			}
-			else {
-				HttpSession session = request.getSession();
-				String decoded = decrypt(code);
-				final String IDENTIFIER = session.getAttribute(username + "Session").toString().split("!")[1];
-				if(!(decoded.equals(IDENTIFIER))) {
-					RequestDispatcher rd = request.getRequestDispatcher("authen.jsp");
-					out.println("<font color = red>Your code was incorrect, please check again the retry!</font>");
-					rd.include(request, response);
-				}
-				else {
-					updateAuthen(username, true);
-					RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-					out.println("<font color = red>Authenticated successfully</font>");
-					rd.include(request, response);
-				}
-			}
+			updateAuthen(email, code);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}		
+		RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+		out.println("<font color= red>Authenticate successfully, Please login</font>");
+		rd.include(request, response);
 	}
 
-	protected boolean checkEmail(String username, HttpServletRequest request, HttpServletResponse response) throws SQLException{
-		Connection conn = null;
-		try{
-			conn = DbConn.getConnection();
-		}
-		catch(Exception e) {e.printStackTrace();}
-		
-		String query = "Select * from Students where username = ?";
-		
-		PreparedStatement ps = conn.prepareStatement(query);
-		ps.setString(1, username);
-		ResultSet rs = ps.executeQuery();
-		boolean more = rs.next();
-		if(more) {
-			return false;
-		}
-		return true;
-	}
-	
 	protected String decrypt(String code){
 		byte[] decodeByte = Base64.getDecoder().decode(code.getBytes());
 		return new String(decodeByte);
 	}
 	
-	protected void updateAuthen(String username, boolean authen) throws SQLException {
-		int numBool = 0;
-		if(authen) {
-			numBool = 1;
-		}
+	protected void updateAuthen(String email,String code) throws SQLException {
+		String identifier = decrypt(code);
 		
 		Connection conn = null;
 		try{
@@ -92,18 +53,14 @@ public class authen extends HttpServlet {
 		catch(Exception e) {e.printStackTrace();}
 		
 		String query = "update Students "
-				+ "Set authen = ? where username = ?";
+				+ "Set authen = 1"
+				+ " where email = ? and identifier = ? ";
 		
 		PreparedStatement ps = conn.prepareStatement(query);
 		
-		ps.setInt(1, numBool);
-		ps.setString(2, username);
+		ps.setString(1, email);
+		ps.setString(2, identifier);
 		
-		try {
-			ps.executeUpdate();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
+		ps.executeUpdate();
+	}	
 }

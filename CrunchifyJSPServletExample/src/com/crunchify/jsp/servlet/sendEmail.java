@@ -30,8 +30,6 @@ public class sendEmail extends HttpServlet {
 		String pass = "Hanhnhan160315";
 		String from = "nhan99dn";
 		String host = "smtp.gmail.com";
-		System.out.println(email);
-		System.out.println(code);
 		
 		//Set up protocol
 		Properties properties = System.getProperties();
@@ -47,7 +45,7 @@ public class sendEmail extends HttpServlet {
 		Session getSession = Session.getInstance(properties, null);
 		
 		
-		String link = "http://localhost:8080/CrunchifyJSPServletExample/authen.jsp";
+		String link = "http://localhost:8080/CrunchifyJSPServletExample/authen?email=" + email + "&code=" + code;
 		
 		try {
 			Transport transport =  getSession.getTransport("smtp");
@@ -56,9 +54,8 @@ public class sendEmail extends HttpServlet {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 			message.setSubject("Welcome to the STUDENT PAGE!! Authorization needed!");
 			message.setText("You have successfully registered STUDENT PAGE, one more thing to do to become the roster of the family :) "
-					+ "Please click this link and use the encrypted code in order to authenticate the user"
-					+ "Link: " + link + "\n"
-					+ "Code: " + code);
+					+ "Please click this link and use the encrypted code in order to authenticate the user\n"
+					+ "Link: " + link);
 			
 			transport.connect("smtp.gmail.com", from, pass);
 			transport.sendMessage(message, message.getAllRecipients());

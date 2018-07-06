@@ -1,5 +1,5 @@
 package com.crunchify.jsp.servlet;
-
+	
 public class Student {
 	
 	private int id;
@@ -11,6 +11,7 @@ public class Student {
 	private String password;
 	private boolean valid;
 	private boolean authen;
+	private String email;
 	
 	//index getter
 	public int getId() {
@@ -117,6 +118,19 @@ public class Student {
 		
 	}
 	
+	//get Email
+	public String getEmail() {
+		
+		return this.email;
+		
+	}
+	
+	//set Email
+	public void setEmail(String email) {
+		
+		this.email = email;
+		
+	}	
 	//Valid setter
 	public void setValid(boolean valid) {
 		
